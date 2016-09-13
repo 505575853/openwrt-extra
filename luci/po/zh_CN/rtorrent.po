@@ -1,0 +1,406 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: maz-1 ohmygod19993@gmail.com\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
+"X-Generator: Poedit 1.8.8\n"
+
+msgid "NAS"
+msgstr "网络存储"
+
+msgid "0-7. Smaller number means higher priority."
+msgstr "0-7。数字越小优先级越高"
+
+msgid "Add"
+msgstr "添加"
+
+msgid "Add Torrent"
+msgstr "添加种子"
+
+msgid "Address"
+msgstr "地址"
+
+msgid "Allow Incoming Encrypted Connections"
+msgstr "允许入站连接加密"
+
+msgid "Allow controlling rtorrent via XMLRPC"
+msgstr "允许通过XMLRPC控制rTorrent"
+
+msgid "Allow controlling rtorrent with luci web interface"
+msgstr "允许通过Luci Web界面控制rTorrent"
+
+msgid "BT Port Range"
+msgstr "BT端口范围"
+
+msgid "Check Hash For Finished Torrents"
+msgstr "检查已完成种子的哈希值"
+
+msgid "Choose Plaintext When Peer Offers A Choice Between Plaintext and RC4"
+msgstr "当对等节点提供明文和RC4两种加密方式时优先选择明文"
+
+msgid "Client"
+msgstr "客户端"
+
+msgid "Client version"
+msgstr "客户端版本"
+
+msgid "Collecting data..."
+msgstr "收集信息..."
+
+msgid "Connections"
+msgstr "连接"
+
+msgid "Cookies"
+msgstr "Cookies"
+
+msgid "Disable Unencrypted Handshakes"
+msgstr "禁用未加密的握手"
+
+msgid "Disable plaintext transmission after the initial encrypted handshake"
+msgstr "首次加密握手后禁用明文传输"
+
+msgid "Done"
+msgstr "完成"
+
+msgid "Down<br />Speed"
+msgstr "下载<br />速度"
+
+msgid "Download Directory"
+msgstr "下载目录"
+
+msgid "Download Rate"
+msgstr "下载速率"
+
+msgid "Download directory"
+msgstr "下载目录"
+
+msgid "Download done percent"
+msgstr "下载完成百分比"
+
+msgid "Download finished"
+msgstr "下载已完成"
+
+msgid "Download speed in kb/s"
+msgstr "下载速度，单位kb/s"
+
+msgid "Download started"
+msgstr "下载已开始"
+
+msgid "Download/upload ratio"
+msgstr "下载/上传速率"
+
+msgid "Downloaded"
+msgstr "已下载"
+
+msgid "Enable DHT"
+msgstr "开启DHT"
+
+msgid "Enable RSS"
+msgstr "开启RSS"
+
+msgid "Enable RSS feed logging"
+msgstr "开启RSS订阅日志记录"
+
+msgid "Enable Web Interface"
+msgstr "启用Web界面"
+
+msgid "Enable XMLRPC Interface"
+msgstr "启用XMLRPC"
+
+msgid "Enabled"
+msgstr "已启用"
+
+msgid "Encoding List"
+msgstr "列表编码"
+
+msgid "Encryption"
+msgstr "加密"
+
+msgid "Estimated Time of Arrival"
+msgstr "预计到达时间"
+
+msgid "Extra Settings"
+msgstr "附加设置"
+
+msgid "Extra settings"
+msgstr "附加设置"
+
+msgid "File and Path"
+msgstr "文件和路径"
+
+msgid "General settings"
+msgstr "一般设置"
+
+msgid "Hash"
+msgstr "哈希"
+
+msgid "I/O Priority"
+msgstr "I/O优先级"
+
+msgid "I/O Strategy"
+msgstr "I/O策略"
+
+msgid "Info"
+msgstr "信息"
+
+msgid "Integer suffixed with K/M/G."
+msgstr "以K/M/G结尾的整数"
+
+msgid "Integer suffixed with K/M/G. Leave empty to disable."
+msgstr "以K/M/G结尾的整数。留空以禁用"
+
+msgid "Last update time"
+msgstr "最后更新时间"
+
+msgid "Leecher count"
+msgstr "下载者数量"
+
+msgid "Leechers"
+msgstr "下载者"
+
+msgid "Location"
+msgstr "位置"
+
+msgid "Location: country/region/city"
+msgstr "位置：国家/区域/城市"
+
+msgid "Logging"
+msgstr "日志"
+
+msgid "Match"
+msgstr "符合"
+
+msgid "Maximum Peers"
+msgstr "最大Peer连接数"
+
+msgid "Maximum Peers While Seeding"
+msgstr "做种时最大Peer连接数"
+
+msgid "Maximum Uploads"
+msgstr "最大上传数"
+
+msgid "Memory Limit"
+msgstr "内存限制"
+
+msgid "Minimum Peers"
+msgstr "最小Peer连接数"
+
+msgid "Minimum Peers While Seeding"
+msgstr "做种时最小Peer连接数"
+
+msgid "Name"
+msgstr "名称"
+
+msgid "Not able to download torrent:"
+msgstr "无法下载种子："
+
+msgid "Not able to parse torrent file:"
+msgstr "无法解析种子文件："
+
+msgid "Open Web Interface"
+msgstr "打开Web界面"
+
+msgid "Peer Exchange"
+msgstr "Peer交换"
+
+msgid "Peer IP address"
+msgstr "Peer IP地址"
+
+msgid "Peer List"
+msgstr "Peer列表"
+
+msgid "Preallocate Files"
+msgstr "预分配文件空间"
+
+msgid "Priority"
+msgstr "优先级"
+
+msgid "RSS Downloader"
+msgstr "RSS下载器"
+
+msgid "RSS Feed Settings"
+msgstr "RSS订阅设置"
+
+msgid "RSS Feed URL"
+msgstr "RSS订阅URL"
+
+msgid "RSS Rule Settings"
+msgstr "RSS规则设置"
+
+msgid "RSS feed logfile"
+msgstr "RSS订阅日志文件"
+
+msgid "Random Port From Port Range"
+msgstr "从端口范围中随机选取"
+
+msgid "Receive Buffer Size"
+msgstr "接收缓冲大小"
+
+msgid ""
+"Retry With Encryption Toggled On/Off When Initial Outgoing Connection Fails"
+msgstr "当出站连接失败时切换加密开/关并重试"
+
+msgid "Return"
+msgstr "返回"
+
+msgid "Rotate priority"
+msgstr "轮换优先级"
+
+msgid "Run as user"
+msgstr "运行用户"
+
+msgid "Scheduling Priority"
+msgstr "调度优先级"
+
+msgid "Seeder count"
+msgstr "做种者数量"
+
+msgid "Seeders"
+msgstr "做种者"
+
+msgid "Send Buffer Size"
+msgstr "发送缓冲大小"
+
+msgid "Session Directory"
+msgstr "会话目录"
+
+msgid "Set to -1 means same as"
+msgstr "设为-1表示与这个值相同："
+
+msgid "Settings"
+msgstr "设置"
+
+msgid "Size"
+msgstr "大小"
+
+msgid "Split Files Larger Than Size"
+msgstr "分割文件，当文件大于"
+
+msgid "Start now"
+msgstr "立即开始"
+
+msgid "Start rTorrent"
+msgstr "启动rTorrent"
+
+msgid "Status"
+msgstr "状态"
+
+msgid "Suffix of Splited Files"
+msgstr "分割文件后缀"
+
+msgid "Tags"
+msgstr "标签"
+
+msgid ""
+"This is the content of the file '/etc/rtorrent/cookies.txt'. Useful for RSS "
+"Downloader"
+msgstr "这是文件 '/etc/rtorrent/cookies.txt' 的内容。可用于RSS下载器。"
+
+msgid ""
+"This is the content of the file '/etc/rtorrent/rtorrent.rc.extra' which will "
+"be appended to configuration file"
+msgstr ""
+"这是文件 '/etc/rtorrent/rtorrent.rc.extra' 的内容，将被添加到rtorrent的配置文"
+"件。"
+
+msgid "Torrent List"
+msgstr "种子列表"
+
+msgid "Torrent<br />or magnet URI"
+msgstr "种子<br />或磁力链接"
+
+msgid "Total downloaded"
+msgstr "总共已下载"
+
+msgid "Total uploaded"
+msgstr "总共已上传"
+
+msgid "Up<br />Speed"
+msgstr "上传<br />速度"
+
+msgid "Upload Rate"
+msgstr "上传速率"
+
+msgid "Upload speed in kb/s"
+msgstr "上传速度，单位kb/s"
+
+msgid "Upload torrent file"
+msgstr "上传种子文件"
+
+msgid "Uploaded"
+msgstr "已上传"
+
+msgid "Use Encryption For Outgoing Connections"
+msgstr "为出站连接使用加密"
+
+msgid "Use UDP Trackers"
+msgstr "使用UDP Tracker"
+
+msgid "Wrong filename, please use absolute path!"
+msgstr "文件名错误，请使用绝对路径！"
+
+msgid "XMLRPC Interface Listen Address"
+msgstr "XMLRPC监听地址"
+
+msgid "XMLRPC Interface Port"
+msgstr "XMLRPC监听端口"
+
+msgid "You must build rtorrent with --with-posix-fallocate to enable this"
+msgstr "必须在编译rtorrent时加上--with-posix-fallocate才能启用"
+
+msgid "add"
+msgstr "添加"
+
+msgid "delete"
+msgstr "删除"
+
+msgid "rTorrent - RSS Downloader"
+msgstr "rTorrent - RSS下载器"
+
+msgid "rTorrent Settings"
+msgstr "rTorrent设置"
+
+msgid "rTorrent Status"
+msgstr "rTorrent状态"
+
+msgid "rTorrent is a quick and efficient BitTorrent client."
+msgstr "rTorrent是一个快速而高效的BT客户端"
+
+msgid "rTorrent is not running."
+msgstr "rTorrent未运行"
+
+msgid "rTorrent is running."
+msgstr "rTorrent正在运行"
+
+msgid "start"
+msgstr "开始"
+
+msgid "stop"
+msgstr "停止"
+
+msgid "RSS feed download interval"
+msgstr "RSS feed下载间隔"
+
+msgid "in seconds"
+msgstr "单位秒"
+
+msgid "Maximum Memory Usage"
+msgstr "最大内存占用"
+
+msgid "Bind XMLRPC TO HTTP Service"
+msgstr "绑定XMLRPC到HTTP服务"
+
+msgid "Start a http service and bind XMLRPC interface to it<br/>to control rtorrent via remote clients like rutorrent."
+msgstr "启动一个HTTP服务并把XMLRPC接口绑定到上面<br/>用于远程客户端如rutorrent"
+
+msgid "HTTP Service Listen Address"
+msgstr "HTTP服务监听地址"
+
+msgid "HTTP Service Port"
+msgstr "HTTP服务端口"

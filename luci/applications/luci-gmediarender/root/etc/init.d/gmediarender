@@ -1,0 +1,69 @@
+#!/bin/sh /etc/rc.common
+
+START=99
+STOP=99
+SERVICE_DAEMONIZE=1
+
+#DAEMON_USER="root:audio"
+
+INITIAL_VOLUME_DB=-10
+
+ALSA_DEVICE="sysdefault"
+#ALSA_DEVICE="iec958"
+
+BINARY_PATH=/usr/sbin/gmediarender
+
+USER=root
+HOME=/var/run/gmediarender
+export USER HOME
+
+section_enabled() {
+        local result
+        config_get_bool result "$1" 'enabled' 0
+        [ $result -eq 1 ]
+}
+
+
+
+start_instance() {
+        local s="$1"
+
+        section_enabled "$s" || return 1
+
+        config_get bname "$s" 'bname' 'LEDE'
+        config_get ipaddr "$s" 'ipaddr' 
+
+        UPNP_UUID=`ip link show | awk '/ether/ {print "salt:)-" $2}' | head -1 | md5sum | awk '{print $1}'`
+
+        if [ -n "$ALSA_DEVICE" ] ; then
+                GS_SINK_PARAM="--gstout-audiosink=alsasink"
+                GS_DEVICE_PARAM="--gstout-audiodevice=$ALSA_DEVICE"
+        fi
+        echo "Starting GMediaRender"
+        mkdir -p $HOME
+
+        #-c "$DAEMON_USER" -S -- -d
+        service_start $BINARY_PATH -f "$bname" $([ -n "$ipaddr" ] && echo -I $ipaddr) -u "$UPNP_UUID" \
+                $GS_SINK_PARAM $GS_DEVICE_PARAM --gstout-initial-volume-db=$INITIAL_VOLUME_DB 
+}
+
+start() {
+        config_load 'gmediarender'
+        config_foreach start_instance 'gmediarender'
+        return 0
+}
+
+stop() {
+        kill -2 $(pidof gmediarender|sed "s:$$::g") >/dev/null 2>&1
+}
+
+restart() {
+        stop
+        sleep 3
+        start
+}
+
+boot() {
+        sleep 10
+        start
+}

@@ -1,0 +1,38 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\n"
+
+msgid "NAS"
+msgstr "网络存储"
+
+msgid "NFS Service"
+msgstr "NFS服务"
+
+msgid "NFS server"
+msgstr "NFS服务"
+
+msgid "Secure and fastest NFS server"
+msgstr "安全而高速的NFS服务"
+
+msgid "General"
+msgstr "基本设置"
+
+msgid "Enable NFS Sevice"
+msgstr "启用NFS服务"
+
+msgid "NFS shares"
+msgstr "NFS共享"
+
+msgid "Enable"
+msgstr "启用"
+
+msgid "Name"
+msgstr "名称"
+
+msgid "Allowed IPs"
+msgstr "允许的IP"
+
+msgid "Options"
+msgstr "选项"
+
+msgid "Path"
+msgstr "路径"

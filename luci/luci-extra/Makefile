@@ -2,7 +2,7 @@ include $(TOPDIR)/rules.mk
 
 LUCI_TOPDIR=..
 
-PKG_NAME:=luci-extra
+PKG_NAME:=luci-extra-maz1
 PKG_RELEASE:=1
 
 PKG_BUILD_PARALLEL:=0
@@ -35,8 +35,8 @@ define application
     SECTION:=luci
     CATEGORY:=LuCI
     TITLE:=LuCI - Lua Configuration Interface
-    URL:=https://github.com/nanpuyue/openwrt-extra/
-    MAINTAINER:=nanpuyue <nanpuyue@gmail.com>
+    URL:=https://github.com/openwrt-stuff/openwrt-extra/
+    MAINTAINER:=maz-1 <ohmygod19993@gmail.com>
     PKGARCH:=all
     SUBMENU:=3. Applications
     TITLE:=$(if $(2),$(2),LuCI $(1) application)
@@ -54,13 +54,304 @@ define application
   LUCI_BUILD_PACKAGES += luci-app-$(1)
 endef
 
-define Package/luci-app-aria2/conffiles
-/etc/config/aria2
+### Protocol ###
+define protocol
+  define Package/luci-proto-$(1)
+    SECTION:=luci
+    CATEGORY:=LuCI
+    TITLE:=LuCI - Lua Configuration Interface
+    URL:=https://github.com/openwrt-stuff/openwrt-extra/
+    MAINTAINER:=maz-1 <ohmygod19993@gmail.com>
+    PKGARCH:=all
+    SUBMENU:=5. Protocols
+    TITLE:=$(if $(2),$(2),LuCI $(1) protocol)
+	DEPENDS:=$(3)
+  endef
+
+  define Package/luci-proto-$(1)/install
+	$(call Package/luci/install/template,$$(1),protocol/luci-$(1))
+  endef
+
+  ifneq ($(CONFIG_PACKAGE_luci-proto-$(1)),)
+    LUCI_SELECTED_MODULES+=protocol/luci-$(1)
+  endif
+
+  LUCI_BUILD_PACKAGES += luci-proto-$(1)
 endef
 
-$(eval $(call application,aria2,LuCI Support for Aria2,\
-	+PACKAGE_luci-app-aria2:aria2 \
-	+PACKAGE_luci-app-aria2:yaaw))
+
+
+define Package/luci-app-samba4/conffiles
+/etc/config/samba4
+endef
+
+$(eval $(call application,samba4,LuCI Support for Samba4,\
+	+PACKAGE_luci-app-samba4:samba44-server))
+
+
+#define Package/luci-app-aria2/conffiles
+#/etc/config/aria2
+#endef
+
+#$(eval $(call application,aria2,LuCI Support for Aria2,\
+#	+PACKAGE_luci-app-aria2:aria2 \
+#	+PACKAGE_luci-app-aria2:yaaw))
+
+
+define Package/luci-app-ngrokc/conffiles
+/etc/config/ngrokc
+endef
+
+$(eval $(call application,ngrokc,LuCI Support for Ngrokc,\
+	+PACKAGE_luci-app-ngrokc:ngrokc))
+
+
+define Package/luci-app-qos-guoguo/conffiles
+/etc/config/qos_guoguo
+endef
+
+$(eval $(call application,qos-guoguo,LuCI Support for qos-guoguo,\
+	+PACKAGE_luci-app-qos-guoguo:qos-guoguo))
+
+
+
+define Package/luci-app-adkill/conffiles
+/etc/config/adkill
+endef
+
+$(eval $(call application,adkill,LuCI Support for adkill,\
+	+PACKAGE_luci-app-adkill:kmod-adkill))
+
+
+
+define Package/luci-app-redsocks2-alt/conffiles
+/etc/config/redsocks2
+endef
+
+$(eval $(call application,redsocks2-alt,LuCI Support for redsocks2-alt,\
+	+PACKAGE_luci-app-redsocks2-alt:redsocks2-alt))
+
+define Package/luci-app-redsocks2-alt/postinst
+#!/bin/sh
+uci -q batch <<-EOF >/dev/null
+	delete firewall.redsocks2
+	set firewall.redsocks2=include
+	set firewall.redsocks2.type=script
+	set firewall.redsocks2.path=/usr/share/redsocks2/firewall.include
+	set firewall.redsocks2.reload=1
+	commit firewall
+EOF
+exit 0
+endef
+
+
+
+
+define Package/luci-app-chinadns/conffiles
+/etc/config/chinadns
+endef
+
+define Package/luci-app-chinadns/postinst
+#!/bin/sh
+if [ -z "$${IPKG_INSTROOT}" ]; then
+	( . /etc/uci-defaults/luci-chinadns ) && rm -f /etc/uci-defaults/luci-chinadns
+	chmod 755 /etc/init.d/chinadns >/dev/null 2>&1
+	/etc/init.d/chinadns enable >/dev/null 2>&1
+fi
+exit 0
+endef
+
+$(eval $(call application,chinadns,LuCI Support for chinadns,\
+	+PACKAGE_luci-app-chinadns:ChinaDNS))
+
+
+
+define Package/luci-app-vlmcsd/conffiles
+/etc/config/vlmcsd
+endef
+
+$(eval $(call application,vlmcsd,LuCI Support for vlmcsd,\
+	+PACKAGE_luci-app-vlmcsd:vlmcsd))
+
+
+define Package/luci-app-vsftpd/conffiles
+/etc/config/vsftpd
+endef
+
+$(eval $(call application,vsftpd,LuCI Support for vsftpd,\
+	+PACKAGE_luci-app-vsftpd:vsftpd-alt))
+
+
+define Package/luci-app-w8021x/conffiles
+/etc/config/w8021x
+endef
+
+$(eval $(call application,w8021x,LuCI Support for w8021x,\
+	+PACKAGE_luci-app-w8021x:w8021x))
+
+
+define Package/luci-app-epg-oscam/conffiles
+/etc/config/epg
+/etc/config/oscam
+endef
+
+$(eval $(call application,epg-oscam,LuCI Support for epg-oscam,\
+	+PACKAGE_luci-app-epg-oscam:oscam))
+
+
+
+
+define Package/luci-app-nfsd/conffiles
+/etc/config/nfsd
+endef
+
+$(eval $(call application,nfsd,LuCI Support for nfsd,\
+	+PACKAGE_luci-app-nfsd:nfs-kernel-server))
+
+define Package/luci-app-nfsd/postinst
+#!/bin/sh
+uci -q batch <<-EOF >/dev/null
+	delete firewall.nfsd
+	set firewall.nfsd=include
+	set firewall.nfsd.type=script
+	set firewall.nfsd.path=/usr/share/nfsd/firewall.include
+	set firewall.nfsd.reload=1
+	commit firewall
+EOF
+exit 0
+endef
+
+
+
+define Package/luci-app-n2n/conffiles
+/etc/config/n2n
+endef
+
+$(eval $(call application,n2n,LuCI Support for n2n,\
+	+PACKAGE_luci-app-n2n:n2n-edge \
+	+PACKAGE_luci-app-n2n:n2n-supernode ))
+
+
+
+define Package/luci-app-cpulimit/conffiles
+/etc/config/cpulimit
+endef
+
+$(eval $(call application,cpulimit,LuCI Support for cpulimit,\
+	+PACKAGE_luci-app-cpulimit:cpulimit-ng ))
+
+
+
+define Package/luci-app-dns2socks/conffiles
+/etc/config/dns2socks
+endef
+
+$(eval $(call application,dns2socks,LuCI Support for dns2socks,\
+	+PACKAGE_luci-app-dns2socks:dns2socks ))
+
+
+
+
+define Package/luci-app-syncdial/conffiles
+/etc/config/syncdial
+endef
+
+$(eval $(call application,syncdial,LuCI Support for a diag hack,\
+	+PACKAGE_luci-app-syncdial:luci-app-mwan3 \
+	+PACKAGE_luci-app-syncdial:kmod-macvlan ))
+
+
+$(eval $(call application,webshell,LuCI Support for webshell,\
+	+PACKAGE_luci-app-webshell:luci))
+
+
+$(eval $(call application,filetransfer,LuCI Support for filetransfer,\
+	+PACKAGE_luci-app-filetransfer:luci \
+	+PACKAGE_luci-app-filetransfer:luci-lib-fs))
+
+
+define Package/luci-app-amule/conffiles
+/etc/config/amule
+/etc/amule/amule.conf.template
+endef
+
+$(eval $(call application,amule,LuCI Support for amule,\
+	+PACKAGE_luci-app-amule:amule))
+
+
+
+
+
+define Package/luci-app-gmediarender/conffiles
+/etc/config/gmediarender
+endef
+
+define Package/luci-app-gmediarender/postinst
+#!/bin/sh
+[ -n "$${IPKG_INSTROOT}" ] || {
+	( . /etc/uci-defaults/luci-gmediarender ) && rm -f /etc/uci-defaults/luci-gmediarender
+	chmod 755 /etc/init.d/gmediarender >/dev/null 2>&1
+	/etc/init.d/gmediarender enable >/dev/null 2>&1
+	exit 0
+}
+endef
+
+$(eval $(call application,gmediarender,LuCI Support for gmediarender,\
+	+PACKAGE_luci-app-gmediarender:gmediarender))
+
+
+
+
+
+define Package/luci-app-syncy/conffiles
+/etc/config/syncy
+endef
+
+$(eval $(call application,syncy,LuCI Support for syncy,\
+	+PACKAGE_luci-app-syncy:kmod-nls-utf8 \
+	+PACKAGE_luci-app-syncy:python-curl \
+	+PACKAGE_luci-app-syncy:python-json \
+	+PACKAGE_luci-app-syncy:python-openssl \
+	+PACKAGE_luci-app-syncy:python-pyopenssl))
+
+
+
+
+define Package/luci-app-rtorrent/conffiles
+/etc/config/rtorrent
+/etc/rtorrent/cookies.txt
+/etc/rtorrent/rtorrent.rc.extra
+endef
+
+$(eval $(call application,rtorrent,LuCI Support for rtorrent,\
+	+PACKAGE_luci-app-rtorrent:rtorrent-rpc \
+	+PACKAGE_luci-app-rtorrent:dtach \
+	+PACKAGE_luci-app-rtorrent:lua-bencode \
+	+PACKAGE_luci-app-rtorrent:lua-xmlrpc \
+	+PACKAGE_luci-app-rtorrent:luasocket \
+	+PACKAGE_luci-app-rtorrent:lua-coxpcall \
+	+PACKAGE_luci-app-rtorrent:lua-copas \
+	+PACKAGE_luci-app-rtorrent:luaexpat))
+
+
+
+$(eval $(call protocol,openvpn,OpenVPN protocol configuration,\
+	+PACKAGE_luci-proto-openvpn:openvpn-client-netifd \
+	+PACKAGE_luci-proto-openvpn:luci-lib-nixio))
+
+$(eval $(call protocol,n2n,N2N protocol configuration,\
+	+PACKAGE_luci-proto-n2n:n2n-edge))
+
+$(eval $(call protocol,shadowvpn,ShadowVPN protocol configuration,\
+	+PACKAGE_luci-proto-shadowvpn:shadowvpn))
+
+
+define Package/luci-app-shadowsocksr-libev/conffiles
+/etc/config/shadowsocksr-libev
+endef
+
+$(eval $(call application,shadowsocksr-libev,LuCI Support for shadowsocksr-libev,\
+	+PACKAGE_luci-app-shadowsocksr-libev:shadowsocksr-libev ))
 
 
 ### Compile ###

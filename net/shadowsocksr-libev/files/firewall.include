@@ -1,0 +1,6 @@
+#!/bin/sh
+
+if pidof ssr-redir>/dev/null; then
+	/etc/init.d/shadowsocksr-libev rules
+	logger -t ShadowSocksr-libev "Reloading ShadowSocksr-libev due to restart of firewall"
+fi

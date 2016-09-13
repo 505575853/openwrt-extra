@@ -1,0 +1,12 @@
+
+config redsocks2 'config'
+	option localport '11111'
+	option proxytype 'socks5'
+	option proxyip '127.0.0.1'
+	option whitelist_enabled '1'
+	option proxyport '2468'
+	option blacklist_enabled '0'
+	option autoproxy '1'
+	option timeout '4'
+	option enabled '0'
+

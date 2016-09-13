@@ -3,17 +3,21 @@ OpenWrt-Extra
 
 Some extra packages for OpenWrt
 
-Add "src-git extra git://github.com/nanpuyue/openwrt-extra.git" to feeds.conf.default.
+Add "src-git extra git://github.com/openwrt-stuff/openwrt-extra.git" to feeds.conf.default.
 
 ```bash
 ./scripts/feeds update -a
 ./scripts/feeds install -a
 ```
 
-the list of packages:
-* dnscrypt-proxy
-* libsodium (depended by dnscrypt-proxy, but have no ipk)
-* luci-app-aira2
-* shadowsocks-libev
-* webui-aria2
-* yaaw
+Some of the packages:
+* luci-app-adkill
+* luci-app-amule
+* luci-app-cpulimit
+* luci-app-ngrokc
+* luci-app-qos-guoguo (requires some patches : https://github.com/openwrt-stuff/openwrt-mod/tree/generic/patches/02_imq)
+* luci-app_samba4 
+* luci-app-rtorrent
+* luci-app-shadowsocks-libev-obfs
+* uPD72020x-firmware
+* ufsd (only available to specific architectures and kernel versions)

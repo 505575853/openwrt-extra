@@ -1,0 +1,6 @@
+#!/bin/sh
+
+if pidof redsocks2>/dev/null; then
+	/etc/init.d/redsocks2 restart
+	logger -t redsocks2 "Reloading redsocks2 due to restart of firewall"
+fi

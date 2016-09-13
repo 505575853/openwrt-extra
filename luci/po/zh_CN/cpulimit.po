@@ -1,0 +1,14 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8"
+
+msgid "Settings"
+msgstr "设置"
+
+msgid "enable"
+msgstr "启用"
+
+msgid "limit"
+msgstr "限制"
+
+msgid "name of the executable program file or path name"
+msgstr "可执行文件名称"

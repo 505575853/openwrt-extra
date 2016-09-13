@@ -1,0 +1,46 @@
+diff -Naur a/Makefile.am b/Makefile.am
+--- a/Makefile.am	2016-09-13 11:04:49.000000000 +0800
++++ b/Makefile.am	2016-10-02 20:20:32.783906746 +0800
+@@ -1,7 +1,7 @@
+ if USE_SYSTEM_SHARED_LIB
+ SUBDIRS = libcork libipset src
+ else
+-SUBDIRS = libsodium libcork libipset libudns libev src
++SUBDIRS = libcork libipset libudns libev src
+ endif
+ 
+ if ENABLE_DOCUMENTATION
+diff -Naur a/configure.ac b/configure.ac
+--- a/configure.ac	2016-09-13 11:04:49.000000000 +0800
++++ b/configure.ac	2016-10-02 20:48:54.068792086 +0800
+@@ -297,10 +297,6 @@
+ dnl This is an option defined in the origin configure script
+ AC_DEFINE([HAVE_IPv6], [1], [Enable IPv6 support in libudns])
+ 
+-AM_COND_IF([USE_SYSTEM_SHARED_LIB],
+-  [],
+-  [AC_CONFIG_SUBDIRS([libsodium])])
+-
+ AC_CONFIG_FILES([ shadowsocks-libev.pc
+                  Makefile
+                  libcork/Makefile
+diff -Naur a/src/Makefile.am b/src/Makefile.am
+--- a/src/Makefile.am	2016-09-13 11:04:49.000000000 +0800
++++ b/src/Makefile.am	2016-10-02 20:21:29.135440266 +0800
+@@ -5,7 +5,6 @@
+ if !USE_SYSTEM_SHARED_LIB
+ AM_CFLAGS += -I$(top_srcdir)/libev
+ AM_CFLAGS += -I$(top_srcdir)/libudns
+-AM_CFLAGS += -I$(top_srcdir)/libsodium/src/libsodium/include
+ endif
+ AM_CFLAGS += -I$(top_srcdir)/libipset/include
+ AM_CFLAGS += -I$(top_srcdir)/libcork/include
+@@ -17,7 +16,7 @@
+ SS_COMMON_LIBS += -lev -lsodium -lm
+ else
+ SS_COMMON_LIBS += $(top_builddir)/libev/libev.la \
+-                  $(top_builddir)/libsodium/src/libsodium/libsodium.la
++                  -lsodium
+ endif
+ 
+ bin_PROGRAMS = ss-local ss-tunnel

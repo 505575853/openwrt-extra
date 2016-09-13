@@ -1,0 +1,29 @@
+diff -Naur a/cmake/FindLibAV.cmake b/cmake/FindLibAV.cmake
+--- a/cmake/FindLibAV.cmake	2016-10-09 04:28:33.000000000 +0800
++++ b/cmake/FindLibAV.cmake	2016-10-09 16:51:21.436681120 +0800
+@@ -52,24 +52,18 @@
+ FIND_PATH (LIBAV_ROOT_DIR
+   NAMES include/libavcodec/avcodec.h
+-        include/libavdevice/avdevice.h
+-        include/libavfilter/avfilter.h
+         include/libavutil/avutil.h
+-        include/libswscale/swscale.h
+   PATHS ENV LIBAVROOT
+   DOC "libav root directory")
+ 
+ FIND_PATH (LIBAV_INCLUDE_DIR
+   NAMES libavcodec/avcodec.h
+-        libavdevice/avdevice.h
+-        libavfilter/avfilter.h
+         libavutil/avutil.h
+-        libswscale/swscale.h
+   HINTS ${LIBAV_ROOT_DIR}
+   PATH_SUFFIXES include
+   DOC "libav include directory")
+ 
+ if (NOT LibAV_FIND_COMPONENTS)
+-  set (LibAV_FIND_COMPONENTS avcodec avdevice avfilter avformat avutil swscale)
++  set (LibAV_FIND_COMPONENTS avcodec avformat avutil)
+ endif (NOT LibAV_FIND_COMPONENTS)
+ 
+ FOREACH (_LIBAV_COMPONENT ${LibAV_FIND_COMPONENTS})

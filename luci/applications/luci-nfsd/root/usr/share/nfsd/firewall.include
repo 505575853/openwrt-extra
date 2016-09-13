@@ -1,0 +1,6 @@
+#!/bin/sh
+
+if pidof nfsd>/dev/null; then
+	/etc/init.d/nfsd restart
+	logger -t nfsd "Reloading nfsd due to restart of firewall"
+fi

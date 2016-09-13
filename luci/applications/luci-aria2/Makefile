@@ -1,4 +1,4 @@
-PO = aria2
+#PO = aria2
 
-include ../../build/config.mk
-include ../../build/module.mk
+#include ../../build/config.mk
+#include ../../build/module.mk

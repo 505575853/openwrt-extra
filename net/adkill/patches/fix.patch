@@ -1,0 +1,25 @@
+--- adkill-e2b788431f/advkill.c	2016-09-14 16:13:13.000000000 +0800
++++ adkill-mod/advkill.c	2016-09-14 20:22:58.787857630 +0800
+@@ -458,7 +458,9 @@
+ static struct nf_hook_ops nfho_forward = 
+ {
+ 	.hook		= hook_func,
++#if (LINUX_VERSION_CODE < KERNEL_VERSION (4, 4, 0))
+ 	.owner		= THIS_MODULE,
++#endif
+ 	.pf		= PF_INET,
+ #if (LINUX_VERSION_CODE < KERNEL_VERSION (2, 6, 26))
+ 	.hooknum	= NF_IP_FORWARD,
+diff -Naur a/advproc.c b/advproc.c
+--- a/advproc.c	2016-09-14 16:13:13.000000000 +0800
++++ b/advproc.c	2016-09-14 20:30:31.968046722 +0800
+@@ -133,7 +133,8 @@
+ #else
+ static int advkill_conf_seq_read(struct seq_file *seq, void *v)
+ {
+-	return seq_printf(seq, "%s\n", advkillconfdata);
++	seq_printf(seq, "%s\n", advkillconfdata);
++        return 0;
+ }
+ static int advkill_conf_seq_open(struct inode *inode, struct file *file)
+ {
