@@ -404,3 +404,12 @@ msgstr "HTTP服务监听地址"
 
 msgid "HTTP Service Port"
 msgstr "HTTP服务端口"
+
+msgid "HTTP Service Username."
+msgstr "HTTP服务用户名"
+
+msgid "HTTP Service Password."
+msgstr "HTTP服务密码"
+
+msgid "Leave empty to disable authentication"
+msgstr "留空以禁用认证"

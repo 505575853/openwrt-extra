@@ -87,12 +87,19 @@ o.rmempty=true
 o=s:taboption("general", Value, "xmlrpc_bind_host", translate("HTTP Service Listen Address"))
 o.datatype = "ip4addr"
 o.placeholder = "0.0.0.0"
-o.rmempty=true
+o.rmempty = true
 
 o=s:taboption("general", Value, "xmlrpc_bind_port", translate("HTTP Service Port"))
 o.datatype = "port"
 o.placeholder = "5002"
 o.rmempty=true
+
+o=s:taboption("general", Value, "xmlrpc_bind_username", translate("HTTP Service Username."), translate("Leave empty to disable authentication"))
+o.rmempty = true
+
+o=s:taboption("general", Value, "xmlrpc_bind_password", translate("HTTP Service Password."), translate("Leave empty to disable authentication"))
+o.rmempty = true
+o.password = true
 -------------------------------------------------------------------------------------------------------
 
 o=s:taboption("path_and_file", Value, "directory", translate("Download Directory"))
