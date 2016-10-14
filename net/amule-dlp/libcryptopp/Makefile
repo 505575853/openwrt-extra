@@ -42,7 +42,7 @@ endef
 
 #TARGET_LDFLAGS += \
 #	-lpthread
-CMAKE_OPTIONS += -DCMAKE_CXX_FLAGS="-fPIC"
+CMAKE_OPTIONS += -DCMAKE_CXX_FLAGS="$(FPIC)"
 
 UNPACK_CMD=cd $(PKG_BUILD_DIR) && unzip "$(DL_DIR)/$(PKG_SOURCE)"
 define Build/Prepare

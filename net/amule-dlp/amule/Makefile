@@ -9,17 +9,12 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=aMule
 PKG_VERSION:=2.3.2
-PKG_RELEASE:=1
+PKG_RELEASE:=2
+PKG_REV=4b87b20
 
-#PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-#PKG_SOURCE_URL:=@SF/amule
-#PKG_MD5SUM:=31724290a440943f5b05d4dca413fe02
-
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_REV).tar.bz2
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-r$(PKG_REV).tar.bz2
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
-#f9aac98874aecd9c30d06b3f74cd912557e239cb
-PKG_REV=f9aac98
 PKG_SOURCE_VERSION:=$(PKG_REV)
 PKG_SOURCE_URL:=https://github.com/amule-project/amule.git
 
@@ -88,11 +83,6 @@ define Build/Compile
 endef
 
 define Package/amule/install
-	#$(INSTALL_DIR) $(1)/usr/bin
-	#$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/amule{cmd,d,web} $(1)/usr/bin/
-	#$(INSTALL_DIR) $(1)/usr/share
-	#$(CP) $(PKG_INSTALL_DIR)/usr/share/amule $(1)/usr/share/
-	
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(INSTALL_DIR) $(1)/usr/share/amule/webserver
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/amule{cmd,d} $(1)/usr/bin/
