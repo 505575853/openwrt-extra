@@ -13,7 +13,7 @@ PKG_VERSION:=9.06
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=http://downloads.ghostscript.com/public/$(PKG_SOURCE)
+PKG_SOURCE_URL:=http://downloads.ghostscript.com/public/old-gs-releases/
 PKG_MD5SUM:=153ddb0622cb155d2f600146f1e28d84
 
 include $(INCLUDE_DIR)/package.mk
@@ -24,7 +24,7 @@ define Package/ghostscript
   TITLE:=An interpreter for the PostScript language and for PDF
   URL:=http://ghostscript.com/
   MAINTAINER:=Weijie Gao <hackpascal@gmail.com>
-  DEPENDS:=+libcups +libcupsimage +libijs +libtiff +libjpeg +libpng +liblcms2 +zlib
+  DEPENDS:= +zlib +libtiff +libjpeg +libpng +libcups +libcupsimage +libijs +liblcms2
 endef
 
 define Package/ghostscript/description
@@ -62,7 +62,7 @@ CONFIGURE_ARGS += \
 	--with-cups-serverbin="/usr/lib/cups" \
 	--with-cups-serverroot="/etc/cups" \
 	--with-cups-datadir="/usr/share/cups" \
-	HOSTCC=$(HOSTCC)
+	HOSTCC="$(HOSTCC)"
 
 define Build/Configure
 	$(RM) -rf $(PKG_BUILD_DIR)/{expat,jasper,freetype,jpeg,ijs,lcms2,lcms,libpng,tiff,zlib}

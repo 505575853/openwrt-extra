@@ -1,0 +1,11 @@
+diff -Naur a/src/brdecode.cc b/src/brdecode.cc
+--- a/src/brdecode.cc	2016-10-15 00:12:39.430890275 +0800
++++ b/src/brdecode.cc	2016-10-15 00:14:04.204838731 +0800
+@@ -21,6 +21,7 @@
+ #include <algorithm>
+ #include <exception>
+ #include <vector>
++#include <string>
+ 
+ namespace {
+ 

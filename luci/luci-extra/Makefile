@@ -281,6 +281,9 @@ $(eval $(call application,amule,LuCI Support for amule,\
 
 
 
+$(eval $(call application,cups,LuCI Support for cups,\
+	+PACKAGE_luci-app-cups:cups))
+
 
 define Package/luci-app-gmediarender/conffiles
 /etc/config/gmediarender
