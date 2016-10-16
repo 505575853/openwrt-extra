@@ -19,10 +19,16 @@ PKG_SOURCE_VERSION:=$(PKG_REV)
 PKG_SOURCE_URL:=https://github.com/amule-project/amule.git
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
-PKG_BUILD_DEPENDS:=libgd
+PKG_BUILD_DEPENDS:=libgd libcryptopp
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/nls.mk
+
+define Package/amule/config
+config AMULE_CRYPTOPP_STATIC_LINKING
+	bool "Link libcryptopp statically"
+	default y
+endef
 
 define Package/amule
   SUBMENU:=P2P
@@ -30,8 +36,8 @@ define Package/amule
   CATEGORY:=Network
   TITLE:=A multi-platform eMule-like ed2k client
   URL:=http://www.amule.org/
-  DEPENDS:=+libpng +libpthread +libncurses +libreadline +libwxbase +libcryptopp +libupnp \
-	$(ICONV_DEPENDS) $(INTL_DEPENDS)
+  DEPENDS:=+libpng +libpthread +libncurses +libreadline +libwxbase +libupnp \
+	$(ICONV_DEPENDS) $(INTL_DEPENDS) +!AMULE_CRYPTOPP_STATIC_LINKING:libcryptopp
 endef
 
 CONFIGURE_ARGS+= \
@@ -75,11 +81,19 @@ define Build/Configure
 	$(call Build/Configure/Default)
 endef
 
+ifeq ($(CONFIG_AMULE_CRYPTOPP_STATIC_LINKING),y)
+	SED_CMD:=sed
+else
+	SED_CMD:=true
+endif
+
 define Build/Compile
+	$(SED_CMD) -i 's;^CRYPTOPP_LIBS.*;CRYPTOPP_LIBS \= "$(STAGING_DIR)/usr/lib/libcryptopp.a";g' \
+		$(PKG_BUILD_DIR)/src/Makefile
 	$(MAKE) -C $(PKG_BUILD_DIR) \
 		HOSTCC="$(HOSTCC)" \
 		DESTDIR="$(PKG_INSTALL_DIR)" \
-		all #install
+		all
 endef
 
 define Package/amule/install
