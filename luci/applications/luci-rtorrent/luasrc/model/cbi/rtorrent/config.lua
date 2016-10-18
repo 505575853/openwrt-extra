@@ -66,9 +66,9 @@ end
 o.rmempty=true
 
 o=s:taboption("general", Flag, "enable_rss", translate("Enable RSS"), 
-    "<input type=\"button\" class=\"cbi-button cbi-button-apply\" value=\"" 
+    "<input type=\"button\" size=\"0\" value=\"" 
     .. translate("RSS Feed Settings") .. "\" onclick=\"location.href='./rtorrent_config_rss_feed'\" />" .. "&nbsp;" .. 
-    "<input type=\"button\" class=\"cbi-button cbi-button-apply\" value=\"" 
+    "<input type=\"button\" size=\"0\" value=\"" 
     .. translate("RSS Rule Settings") .. "\" onclick=\"location.href='./rtorrent_config_rss_rule'\" />")
 o.rmempty=true
 

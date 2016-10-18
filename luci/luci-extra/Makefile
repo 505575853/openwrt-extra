@@ -18,15 +18,34 @@ LUCI_CFLAGS:=
 LUCI_BUILD_PACKAGES:=
 LUCI_SELECTED_MODULES:=
 
+LUAC:="$(STAGING_DIR)/host/bin/luac"
+
 ifeq ($(BOARD),brcm-2.4)
   MAKE_FLAGS += CRAP="1"
 endif
 
+### LuaSrcDiet ###
+define SrcDiet
+	$(FIND) $(1) -type f -name '*.lua' | while read src; do \
+		if LuaSrcDiet --noopt-binequiv -o "$$$$src.o" "$$$$src"; \
+		then mv "$$$$src.o" "$$$$src"; fi; \
+	done
+endef
+
+### LuaC ###
+define LuaC
+	$(FIND) $(1) -type f -name '*.lua' | while read src; do \
+		if "$(LUAC)" -s -o "$$$$src.o" "$$$$src"; \
+		then mv "$$$$src.o" "$$$$src"; fi; \
+	done
+endef
 
 ### Templates ###
 define Package/luci/install/template
 	$(CP) -a $(PKG_BUILD_DIR)/$(2)/dist/* $(1)/ -R
 	$(CP) -a $(PKG_BUILD_DIR)/$(2)/ipkg/* $(1)/CONTROL/ 2>/dev/null || true
+	$(if $(CONFIG_LUCI_SRCDIET),$$(call SrcDiet,$(1)/usr/lib/lua/),true)
+	$(if $(CONFIG_LUCI_BYTECODE),$$(call LuaC,$(1)/usr/lib/lua/),true)
 endef
 
 ### Applications ###

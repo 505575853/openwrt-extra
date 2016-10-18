@@ -9,5 +9,5 @@ function index()
 		return
 	end
 
-	entry({"admin", "network", "chinadns"}, cbi("chinadns"), _("ChinaDNS"), 70).dependent = true
+	entry({"admin", "services", "chinadns"}, cbi("chinadns"), _("ChinaDNS"), 70).dependent = true
 end

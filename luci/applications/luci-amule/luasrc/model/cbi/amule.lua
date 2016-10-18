@@ -161,16 +161,18 @@ o.rmempty = true
 
 -- SERVER --
 
-o = s:taboption("server", Value, "kad_nodes_url", translate("Kad Nodes Url"), "<input type=\"button\" class=\"cbi-button cbi-button-save\" title=\"" 
+o = s:taboption("server", Value, "kad_nodes_url", translate("Kad Nodes Url"), "<input type=\"button\" size=\"0\" title=\"" 
     .. translate("Download now") .. "\" onclick=\"onclick_down_kad(this.id)\" "
-    .. "style=\"background: url(/luci-static/resources/cbi/down.gif);background-size:100%;\" "
+    .. "value=\"&#10597;&#10597;&#10597;\" "
+    .. "style=\"font-weight:bold;text-decoration:overline;\""
     .. "/>")
 o.rmempty = false
 o.placeholder = "http://upd.emule-security.org/nodes.dat"
 
-o = s:taboption("server", Value, "ed2k_servers_url", translate("Ed2k Servers List Url"), "<input type=\"button\" class=\"cbi-button cbi-button-save\" title=\"" 
+o = s:taboption("server", Value, "ed2k_servers_url", translate("Ed2k Servers List Url"), "<input type=\"button\" size=\"0\" title=\"" 
     .. translate("Download now") .. "\" onclick=\"onclick_down_ed2k(this.id)\" "
-    .. "style=\"background: url(/luci-static/resources/cbi/down.gif);background-size:100%;\" "
+    .. "value=\"&#10597;&#10597;&#10597;\" "
+    .. "style=\"font-weight:bold;text-decoration:overline;\""
     .. "/>")
 o.rmempty = false
 o.placeholder = "http://upd.emule-security.org/server.met"
