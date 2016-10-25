@@ -1,0 +1,15 @@
+diff -Naur a/EasyDrcom/main.cpp b/EasyDrcom/main.cpp
+--- a/EasyDrcom/main.cpp	2016-10-14 13:53:57.000000000 +0800
++++ b/EasyDrcom/main.cpp	2016-10-25 18:44:58.048457823 +0800
+@@ -345,7 +345,11 @@
+ {
+     int ret = 0;
+     bool background = false, redirect_to_null = false;
++#ifdef OPENWRT
++    std::string config_path = "/etc/EasyDrcom.conf";
++#else
+     std::string config_path = "EasyDrcom.conf";
++#endif
+     auto clog_def = std::clog.rdbuf();
+     auto cout_def = std::cout.rdbuf();
+     auto cerr_def = std::cerr.rdbuf();
