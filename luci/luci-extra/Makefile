@@ -185,6 +185,25 @@ $(eval $(call application,chinadns,LuCI Support for chinadns,\
 
 
 
+
+define Package/luci-app-cdns/conffiles
+/etc/config/cdns
+endef
+
+define Package/luci-app-cdns/postinst
+#!/bin/sh
+if [ -z "$${IPKG_INSTROOT}" ]; then
+	chmod 755 /etc/init.d/cdns >/dev/null 2>&1
+	/etc/init.d/cdns enable >/dev/null 2>&1
+fi
+exit 0
+endef
+
+$(eval $(call application,cdns,LuCI Support for CureDNS,\
+	+PACKAGE_luci-app-cdns:cdns))
+
+
+
 define Package/luci-app-vlmcsd/conffiles
 /etc/config/vlmcsd
 endef
