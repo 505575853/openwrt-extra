@@ -32,7 +32,8 @@ define Package/mono/Default
   TITLE:=Free implementation of the .NET platform.
   URL:=http://www.mono-project.com/
   MAINTAINER:=maz-1
-  DEPENDS:=+libc +zlib +libpthread +libstdcpp +librt +libattr
+  DEPENDS:=+libc +zlib +libpthread +libstdcpp +librt +libattr \
+	+PACKAGE_libiconv-full:libiconv-full +PACKAGE_libcharset:libcharset
 endef
 
 define Package/mono

@@ -1,0 +1,31 @@
+diff -Naur a/mono/mini/exceptions-ppc.c b/mono/mini/exceptions-ppc.c
+--- a/mono/mini/exceptions-ppc.c	2016-07-29 17:10:33.000000000 +0800
++++ b/mono/mini/exceptions-ppc.c	2016-10-30 14:02:49.091930580 +0800
+@@ -681,7 +681,7 @@
+ 	uc_copy = (ucontext_t*)(sp + 16);
+ 	memcpy (uc_copy, uc, sizeof (os_ucontext));
+ #if defined(__linux__) && !defined(__mono_ppc64__)
+-	uc_copy->uc_mcontext.uc_regs = (gpointer)((char*)uc_copy + ((char*)uc->uc_mcontext.uc_regs - (char*)uc));
++	//uc_copy->uc_mcontext.uc_regs = (gpointer)((char*)uc_copy + ((char*)uc->uc_mcontext.uc_regs - (char*)uc));
+ #endif
+ 	g_assert (mono_arch_ip_from_context (uc) == mono_arch_ip_from_context (uc_copy));
+ 	/* at the return form the signal handler execution starts in altstack_handle_and_restore() */
+diff -Naur a/mono/utils/mono-sigcontext.h b/mono/utils/mono-sigcontext.h
+--- a/mono/utils/mono-sigcontext.h	2016-07-29 17:10:33.000000000 +0800
++++ b/mono/utils/mono-sigcontext.h	2016-10-30 13:56:31.016840968 +0800
+@@ -263,10 +263,11 @@
+ 	#define UCONTEXT_REG_NIP(ctx)     (((os_ucontext*)(ctx))->uc_mcontext.gp_regs [PT_NIP])
+ 	#define UCONTEXT_REG_LNK(ctx)     (((os_ucontext*)(ctx))->uc_mcontext.gp_regs [PT_LNK])
+ #else
+-	#define UCONTEXT_REG_Rn(ctx, n)   (((os_ucontext*)(ctx))->uc_mcontext.uc_regs->gregs [(n)])
+-	#define UCONTEXT_REG_FPRn(ctx, n) (((os_ucontext*)(ctx))->uc_mcontext.uc_regs->fpregs.fpregs [(n)])
+-	#define UCONTEXT_REG_NIP(ctx)     (((os_ucontext*)(ctx))->uc_mcontext.uc_regs->gregs [PT_NIP])
+-	#define UCONTEXT_REG_LNK(ctx)     (((os_ucontext*)(ctx))->uc_mcontext.uc_regs->gregs [PT_LNK])
++        #include <asm/ptrace.h>
++	#define UCONTEXT_REG_Rn(ctx, n)   (((os_ucontext*)(ctx))->uc_mcontext.gregs [(n)])
++	#define UCONTEXT_REG_FPRn(ctx, n) (((os_ucontext*)(ctx))->uc_mcontext.fpregs.fpregs [(n)])
++	#define UCONTEXT_REG_NIP(ctx)     (((os_ucontext*)(ctx))->uc_mcontext.gregs [PT_NIP])
++	#define UCONTEXT_REG_LNK(ctx)     (((os_ucontext*)(ctx))->uc_mcontext.gregs [PT_LNK])
+ #endif
+ #elif defined (__APPLE__) && defined (_STRUCT_MCONTEXT)
+ 	typedef struct __darwin_ucontext os_ucontext;
