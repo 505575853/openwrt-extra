@@ -1,0 +1,16 @@
+#!/bin/sh
+
+/etc/init.d/autossh enabled && {
+	/etc/init.d/autossh stop
+	/etc/init.d/autossh disable
+}
+
+uci -q batch <<-EOF >/dev/null
+	delete ucitrack.@autossh[-1]
+	add ucitrack autossh
+	set ucitrack.@autossh[-1].init=autossh
+	commit ucitrack
+EOF
+
+rm -f /tmp/luci-indexcache
+exit 0

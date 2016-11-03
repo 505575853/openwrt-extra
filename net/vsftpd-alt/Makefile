@@ -28,7 +28,8 @@ define Package/vsftpd-alt/Default
   TITLE:=A fast and secure FTP server (with aio support)
   URL:=http://vsftpd.beasts.org/
   MAINTAINER:=Cezary Jackiewicz <cezary@eko.one.pl>
-  DEPENDS=+libopenssl +libuci +PACKAGE_libpam:libpam 
+  DEPENDS=+libopenssl +libuci 
+  #+PACKAGE_libpam:libpam 
 endef
 
 define Package/vsftpd-alt/conffiles
@@ -54,9 +55,9 @@ else
   NLSSTRING:=-lcrypt -lnsl
 endif
 
-ifdef CONFIG_PACKAGE_libpam
-  EXTRA_LDFLAGS += -lpam
-endif
+#ifdef CONFIG_PACKAGE_libpam
+#  EXTRA_LDFLAGS += -lpam
+#endif
 
 #ifeq ($(CONFIG_VSFTPD_ENABLE_AIO),y)
 #define Package/vsftpd-alt
@@ -74,9 +75,9 @@ endef
 
 define Build/Compile
 	$(SED) 's/#undef VSF_BUILD_SSL/#define VSF_BUILD_SSL/' $(PKG_BUILD_DIR)/builddefs.h
-ifdef CONFIG_PACKAGE_libpam
-	$(SED) 's/#undef VSF_BUILD_PAM/#define VSF_BUILD_PAM/' $(PKG_BUILD_DIR)/builddefs.h
-endif
+#ifdef CONFIG_PACKAGE_libpam
+#	$(SED) 's/#undef VSF_BUILD_PAM/#define VSF_BUILD_PAM/' $(PKG_BUILD_DIR)/builddefs.h
+#endif
 	$(SED) 's/-lcrypt -lnsl/-lcrypt -lnsl -lssl -lcrypto/' $(PKG_BUILD_DIR)/Makefile
 	$(SED) 's/-lcrypt -lnsl/$(NLSSTRING)/' $(PKG_BUILD_DIR)/Makefile
 	$(MAKE) -C $(PKG_BUILD_DIR) \

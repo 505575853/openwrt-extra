@@ -1,0 +1,26 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8"
+
+msgid "AutoSSH"
+msgstr "AutoSSH"
+
+msgid "AutoSSH Settings"
+msgstr "AutoSSH设置"
+
+msgid "Enable"
+msgstr "启用"
+
+msgid "Gate Time"
+msgstr "入口时间"
+
+msgid "Monitor Port"
+msgstr "监视端口"
+
+msgid "Poll Time"
+msgstr "轮询时间"
+
+msgid "SSH Params"
+msgstr "SSH参数"
+
+msgid "SSH Reverse Tunnel"
+msgstr "SSH反向隧道"

@@ -1,0 +1,205 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8"
+
+msgid ""
+"<abbr title=\"an integer that specifies the order in which the rule should "
+"be checked for a match (lower numbers are checked first)\">Help</abbr>"
+msgstr ""
+"<abbr title=\"用于指定规则检查顺序的整数(数字小的优先)\">帮助</abbr>"
+""
+
+msgid ""
+"<abbr title=\"check that packet has this destination ip, can optionally "
+"have /[mask] after it (see -d option in iptables man page)\">Help</abbr>"
+msgstr ""
+"<abbr title=\"check that packet has this destination ip, can optionally "
+"have /[mask] after it (see -d option in iptables man page)\">帮助</abbr>"
+
+msgid "<abbr title=\"check that packet has this destination port\">Help</abbr>"
+msgstr "<abbr title=\"check that packet has this destination port\">帮助</abbr>"
+
+msgid ""
+"<abbr title=\"check that packet has this protocol (tcp, udp, both)\">Help</"
+"abbr>"
+msgstr ""
+"<abbr title=\"check that packet has this protocol (tcp, udp, both)\">帮助</"
+"abbr>"
+
+msgid ""
+"<abbr title=\"check that packet has this source ip, can optionally have /"
+"[mask] after it (see -s option in iptables man page)\">Help</abbr>"
+msgstr ""
+"<abbr title=\"check that packet has this source ip, can optionally have /"
+"[mask] after it (see -s option in iptables man page)\">帮助</abbr>"
+
+msgid "<abbr title=\"check that packet has this source port\">Help</abbr>"
+msgstr "<abbr title=\"check that packet has this source port\">帮助</abbr>"
+
+msgid ""
+"<abbr title=\"check that packet is at least this size (in bytes)\">Help</"
+"abbr>"
+msgstr ""
+"<abbr title=\"check that packet is at least this size (in bytes)\">帮助</"
+"abbr>"
+
+msgid ""
+"<abbr title=\"check that packet is no larger than this size (in "
+"bytes)\">Help</abbr>"
+msgstr ""
+"<abbr title=\"check that packet is no larger than this size (in "
+"bytes)\">帮助</abbr>"
+
+msgid ""
+"<abbr title=\"check whether packet matches layer7 specification\">Help</abbr>"
+msgstr ""
+"<abbr title=\"check whether packet matches layer7 specification\">帮助</abbr>"
+
+msgid ""
+"<abbr title=\"check wither packet matches ipp2p specification (used to "
+"recognize p2p protocols),ipp2p or all will match any of the specified p2p "
+"protocols, you can also specifically match any protocol listed in the "
+"documentation here: http://ipp2p.org/docu_en.html\">Help</abbr>"
+msgstr ""
+"<abbr title=\"check wither packet matches ipp2p specification (used to "
+"recognize p2p protocols),ipp2p or all will match any of the specified p2p "
+"protocols, you can also specifically match any protocol listed in the "
+"documentation here: http://ipp2p.org/docu_en.html\">帮助</abbr>"
+
+msgid "<abbr title=\"kbyte\">Help</abbr>"
+msgstr "<abbr title=\"kbyte\">帮助</abbr>"
+
+msgid ""
+"<abbr title=\"name of bandwidth class to use if rule matches, this is "
+"required in each rule section\">Help</abbr>"
+msgstr ""
+"<abbr title=\"规则匹配时使用的带宽类, 每个规则都必须设置该项\">帮助</abbr>"
+""
+
+msgid "DownLoad"
+msgstr "下载"
+
+msgid "DownLoad Set"
+msgstr "下载设置"
+
+msgid "Download"
+msgstr "下载"
+
+msgid "Download set"
+msgstr "下载设置"
+
+msgid "Enable"
+msgstr "启用"
+
+msgid "Global"
+msgstr "全局"
+
+msgid "Global set"
+msgstr "全局设置"
+
+msgid "Qos_Gargoyle"
+msgstr "石像鬼QOS"
+
+msgid "Qos_Switch"
+msgstr "QOS开关"
+
+msgid "Qos_Switch is designed for switching on/off Qos_Gargoyle."
+msgstr "QOS开关用于启用/禁用石像鬼QOS"
+
+msgid "UpLoad"
+msgstr "上传"
+
+msgid "UpLoad Set"
+msgstr "上传设置"
+
+msgid "UpLoad set"
+msgstr "上传设置"
+
+msgid "class"
+msgstr "类"
+
+msgid "connbytes_kbyte"
+msgstr "connbytes_kbyte"
+
+msgid "default_class"
+msgstr "默认类"
+
+msgid "destination ip"
+msgstr "目标IP"
+
+msgid "destination port"
+msgstr "目标端口"
+
+msgid "download_class"
+msgstr "下载类"
+
+msgid "download_rule"
+msgstr "下载规则"
+
+msgid "enable download qos"
+msgstr "启用下载QOS"
+
+msgid "enable upload qos"
+msgstr "启用上传QOS"
+
+msgid "global"
+msgstr "全局"
+
+msgid "interface"
+msgstr "接口"
+
+msgid "max bandwidth useage in absolute speed (kbit/s)"
+msgstr "最大带宽占用 (绝对速度，单位kbit/s)"
+
+msgid "max_bandwidth"
+msgstr "最大带宽"
+
+msgid "max_pkt_size"
+msgstr "最大封包大小"
+
+msgid "min bandwidth useage in absolute speed (kbit/s)"
+msgstr "最小带宽占用 (绝对速度，单位kbit/s)"
+
+msgid "minRTT"
+msgstr "minRTT"
+
+msgid "min_bandwidth"
+msgstr "最小带宽"
+
+msgid "min_pkt_size"
+msgstr "最小封包大小"
+
+msgid "mtu"
+msgstr "MTU"
+
+msgid "name"
+msgstr "名称"
+
+msgid "network"
+msgstr "网络"
+
+msgid "percent of total bandwidth to use"
+msgstr "使用总带宽百分比"
+
+msgid "percent_bandwidth"
+msgstr "带宽百分百"
+
+msgid "proto"
+msgstr "协议"
+
+msgid "source ip"
+msgstr "源IP"
+
+msgid "source port"
+msgstr "源端口"
+
+msgid "test_order"
+msgstr "测试顺序"
+
+msgid "total_bandwidth"
+msgstr "总带宽"
+
+msgid "upload"
+msgstr "上传"
+
+msgid "upload_class"
+msgstr "上传类"

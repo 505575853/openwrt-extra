@@ -125,6 +125,28 @@ $(eval $(call application,ngrokc,LuCI Support for Ngrokc,\
 	+PACKAGE_luci-app-ngrokc:ngrokc))
 
 
+
+define Package/luci-app-qos_gargoyle/conffiles
+/etc/config/qos_gargoyle
+endef
+
+define Package/luci-app-qos_gargoyle/postinst
+#!/bin/sh 
+[ -n "${IPKG_INSTROOT}" ] || {
+	/etc/init.d/qos_gargoyle enable
+	exit 0
+}
+endef 
+
+$(eval $(call application,qos_gargoyle,LuCI Support for qos_gargoyle,\
+	+PACKAGE_luci-app-qos_gargoyle:qos-gargoyle \
+	+PACKAGE_luci-app-qos_gargoyle:gargoyle-firewall-util \
+	+PACKAGE_luci-app-qos_gargoyle:libiptbwctl \
+	+PACKAGE_luci-app-qos_gargoyle:libericstools \
+	+PACKAGE_luci-app-qos_gargoyle:luci))
+
+
+
 define Package/luci-app-qos-guoguo/conffiles
 /etc/config/qos_guoguo
 endef
@@ -140,6 +162,11 @@ endef
 
 $(eval $(call application,adkill,LuCI Support for adkill,\
 	+PACKAGE_luci-app-adkill:kmod-adkill))
+
+
+
+$(eval $(call application,autossh,LuCI Support for autossh,\
+	+PACKAGE_luci-app-autossh:autossh))
 
 
 
@@ -226,6 +253,36 @@ endef
 
 $(eval $(call application,w8021x,LuCI Support for w8021x,\
 	+PACKAGE_luci-app-w8021x:w8021x))
+
+
+
+
+define Package/luci-app-mentohust/postinst
+#!/bin/sh
+[ -n "$${IPKG_INSTROOT}" ] || {
+	( . /etc/uci-defaults/luci-mentohust ) && rm -f /etc/uci-defaults/luci-mentohust
+	chmod 755 /etc/init.d/mentohust >/dev/null 2>&1
+   /etc/init.d/mentohust enable >/dev/null 2>&1
+   rm -f /etc/mentohust.conf ; ln -s /tmp/mentohust.conf /etc/mentohust.conf
+	exit 0
+}
+endef
+
+define Package/luci-app-mentohust/postrm
+#!/bin/sh
+uci delete ucitrack.@mentohust[-1] >/dev/null 2>&1
+uci commit ucitrack
+exit 0
+endef
+
+define Package/luci-app-mentohust/conffiles
+/etc/config/mentohust
+endef
+
+$(eval $(call application,mentohust,LuCI Support for MenToHUST,\
+	+PACKAGE_luci-app-mentohust:mentohust))
+
+
 
 
 define Package/luci-app-epg-oscam/conffiles

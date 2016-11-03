@@ -1,0 +1,60 @@
+#!/bin/sh /etc/rc.common
+#Author:tsl0922
+#Email:tsl0922@sina.com
+
+START=55
+STOP=10
+CFG=/tmp/mentohust.conf
+
+
+start()
+{
+if [ $(uci get mentohust.@option[0].enable) ] ;
+then
+	echo [MentoHUST] > ${CFG}
+	echo Username=$(uci get mentohust.@mentohust[0].Username) >> ${CFG}
+	echo Password=$(uci get mentohust.@mentohust[0].Password) >> ${CFG}
+	echo Nic=$(uci get mentohust.@mentohust[0].Nic) >> ${CFG}
+	echo IP=$(uci get mentohust.@mentohust[0].IP) >> ${CFG}
+	echo Mask=$(uci get mentohust.@mentohust[0].Mask) >> ${CFG}
+	echo Gateway=$(uci get mentohust.@mentohust[0].Gateway) >> ${CFG}
+	echo DNS=$(uci get mentohust.@mentohust[0].DNS) >> ${CFG}
+	echo PingHost=$(uci get mentohust.@mentohust[0].PingHost) >> ${CFG}
+	echo Timeout=$(uci get mentohust.@mentohust[0].Timeout) >> ${CFG}
+	echo EchoInterval=$(uci get mentohust.@mentohust[0].EchoInterval) >> ${CFG}
+	echo RestartWait=$(uci get mentohust.@mentohust[0].RestartWait) >> ${CFG}
+	echo MaxFail=$(uci get mentohust.@mentohust[0].MaxFail) >> ${CFG}
+	echo StartMode=$(uci get mentohust.@mentohust[0].StartMode) >> ${CFG}
+	echo DhcpMode=$(uci get mentohust.@mentohust[0].DhcpMode) >> ${CFG}
+	echo DaemonMode=$(uci get mentohust.@mentohust[0].DaemonMode) >> ${CFG}
+	echo ShowNotify=$(uci get mentohust.@mentohust[0].ShowNotify) >> ${CFG}
+	echo Version=$(uci get mentohust.@mentohust[0].Version) >> ${CFG}
+	echo DataFile=$(uci get mentohust.@mentohust[0].DataFile) >> ${CFG}
+	echo dhcpscript=$(uci get mentohust.@mentohust[0].dhcpscript) >> ${CFG}
+	
+	[[ "z$(readlink /etc/mentohust)" != "z${CFG}" ]] && ( rm -f /etc/mentohust ; ln -s ${CFG} /etc/mentohust )
+	
+	mentohust >/dev/null 2>&1 &
+else
+	stop
+fi
+
+if [ $(uci get mentohust.@option[0].boot) ] ;
+then
+	/etc/init.d/mentohust enable
+else
+	/etc/init.d/mentohust disable
+fi
+}
+
+stop()
+{
+sync
+mentohust -k >/dev/null 2>&1 &
+}
+
+restart()
+{
+stop
+start
+}
