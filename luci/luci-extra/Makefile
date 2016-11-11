@@ -126,6 +126,15 @@ $(eval $(call application,ngrokc,LuCI Support for Ngrokc,\
 
 
 
+define Package/luci-app-kcptun/conffiles
+/etc/config/kcptun
+endef
+
+$(eval $(call application,kcptun,LuCI Support for kcptun,\
+	+PACKAGE_luci-app-kcptun:luci))
+
+
+
 define Package/luci-app-qos_gargoyle/conffiles
 /etc/config/qos_gargoyle
 endef
