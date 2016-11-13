@@ -1,0 +1,43 @@
+#!/bin/sh
+# Copyright (C) 2007 OpenWrt.org
+
+. /lib/functions.sh
+
+WHITELIST=/tmp/vpncert-whitelist
+FULLLIST=/tmp/vpncert-list
+
+[ "$ACTION" = "ifup" ] &&  {
+	rm -f ${WHITELIST}
+	rm -f ${FULLLIST}
+	config_load 'network'
+	config_foreach add_whitelist 'interface'
+	
+	ls -d /etc/openvpn >> ${FULLLIST}
+	ls -d /etc/openconnect >> ${FULLLIST}
+	
+	grep -vwf ${WHITELIST} ${FULLLIST} | while read line
+	do
+		rm -f $line
+	done
+	rm -f ${WHITELIST}
+	rm -f ${FULLLIST}
+}
+
+add_whitelist() {
+	config_get proto "$1" 'proto'
+	
+	if [ $proto = "openvpn" ] ; then
+		echo /etc/openvpn/$1.key	>> ${WHITELIST}
+		echo /etc/openvpn/$1.pem	>> ${WHITELIST}
+		echo /etc/openvpn/$1-ta.key	>> ${WHITELIST}
+		echo /etc/openvpn/$1-ca.pem	>> ${WHITELIST}
+	fi
+	if [ $proto = "openconnect" ] ; then
+		echo /etc/openconnect/ca-vpn-$1.pem		>> ${WHITELIST}
+		echo /etc/openconnect/user-cert-vpn-$1.pem	>> ${WHITELIST}
+		echo /etc/openconnect/user-key-vpn-$1.pem	>> ${WHITELIST}
+	fi
+	
+}
+
+
