@@ -22,12 +22,13 @@ PKG_INSTALL:=1
 PKG_FIXUP:=autoreconf
 
 include $(INCLUDE_DIR)/package.mk
+include $(INCLUDE_DIR)/nls.mk
 
 define Package/openprinting-cups-filters
   SECTION:=print
   CATEGORY:=Printing and Imaging
-  TITLE:=OpenPrinting CUPS filters
-  DEPENDS:=+libcups +libcupsimage +libcupsfilters +libfontembed +libfontconfig +glib2 +libijs +libpoppler +libqpdf +ghostscript
+  TITLE:=OpenPrinting CUPS filters - Filters
+  DEPENDS:=+libcups +libcupsfilters +libfontembed +libfontconfig +glib2 +libijs +libpoppler +libqpdf +ghostscript
   URL:=http://www.openprinting.org
 endef
 
@@ -56,6 +57,24 @@ define Package/libfontembed
   URL:=http://www.openprinting.org
 endef
 
+define Package/openprinting-cups-backends
+  SECTION:=print
+  CATEGORY:=Printing and Imaging
+  TITLE:=OpenPrinting CUPS filters - Backends
+  DEPENDS:=+libcupsimage +libtiff
+  URL:=http://www.openprinting.org
+endef
+
+define Package/openprinting-cups-backends/description
+  Backends of OpenPrinting CUPS filters
+
+  Including
+    Backend error handler (BEH)
+    Serial
+    Parallel
+    Implicitclass
+endef
+
 Package/libfontembed/description=$(Package/openprinting-cups-filters/description)
 
 CONFIGURE_ARGS += \
@@ -71,7 +90,7 @@ CONFIGURE_ARGS += \
 	--disable-gssapi \
 	--disable-avahi \
 	--disable-dbus \
-	--disable-foomatic \
+	--disable-foomatic
 
 define Package/openprinting-cups-filters/install
 	$(INSTALL_DIR) $(1)/usr/bin
@@ -79,9 +98,6 @@ define Package/openprinting-cups-filters/install
 
 	$(INSTALL_DIR) $(1)/usr/sbin
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/cups-browsed $(1)/usr/sbin/
-
-	$(INSTALL_DIR) $(1)/usr/lib/cups/backend
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/cups/backend/* $(1)/usr/lib/cups/backend/
 
 	$(INSTALL_DIR) $(1)/usr/lib/cups/filter
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/cups/filter/* $(1)/usr/lib/cups/filter/
@@ -110,6 +126,11 @@ define Package/libfontembed/install
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/{libfontembed.so,libfontembed.so.1,libfontembed.so.1.0.0} $(1)/usr/lib/
 endef
 
+define Package/openprinting-cups-backends/install
+	$(INSTALL_DIR) $(1)/usr/lib/cups/backend
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/cups/backend/* $(1)/usr/lib/cups/backend/
+endef
+
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/usr/include
 	$(CP) $(PKG_INSTALL_DIR)/usr/include/* $(1)/usr/include/
@@ -121,3 +142,4 @@ endef
 $(eval $(call BuildPackage,libcupsfilters))
 $(eval $(call BuildPackage,libfontembed))
 $(eval $(call BuildPackage,openprinting-cups-filters))
+$(eval $(call BuildPackage,openprinting-cups-backends))

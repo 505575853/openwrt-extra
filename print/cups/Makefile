@@ -158,7 +158,6 @@ define Build/Configure
 		--with-pdftops="none" \
 		--with-dbusdir=/etc/dbus-1 \
 		--with-components="embedded" \
-		--libdir=/usr/lib \
 		--without-perl \
 		--without-python \
 		--without-php \
@@ -243,13 +242,13 @@ define Package/cups-bsd/install
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/lpc $(1)/usr/sbin/
 endef
 
+#,lppasswd
 define Package/cups-client/install
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(INSTALL_BIN) \
 		$(PKG_INSTALL_DIR)/usr/bin/{lp,cancel,cupstestppd,cupstestdsc} \
 		$(PKG_INSTALL_DIR)/usr/bin/{ipptool,lpoptions,lpstat} \
 		$(1)/usr/bin/
-	#no lppasswd
 	$(INSTALL_DIR) $(1)/usr/sbin
 	$(INSTALL_BIN) \
 		$(PKG_INSTALL_DIR)/usr/sbin/{cupsaccept,cupsaddsmb,cupsfilter} \
@@ -274,27 +273,27 @@ endef
 
 define Package/libcups/install
 	$(INSTALL_DIR) $(1)/usr/lib
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libcups.so* $(1)/usr/lib/
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib64/libcups.so* $(1)/usr/lib/
 endef
 
 define Package/libcupscgi/install
 	$(INSTALL_DIR) $(1)/usr/lib
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libcupscgi.so* $(1)/usr/lib/
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib64/libcupscgi.so* $(1)/usr/lib/
 endef
 
 define Package/libcupsimage/install
 	$(INSTALL_DIR) $(1)/usr/lib
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libcupsimage.so* $(1)/usr/lib/
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib64/libcupsimage.so* $(1)/usr/lib/
 endef
 
 define Package/libcupsmime/install
 	$(INSTALL_DIR) $(1)/usr/lib
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libcupsmime.so* $(1)/usr/lib/
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib64/libcupsmime.so* $(1)/usr/lib/
 endef
 
 define Package/libcupsppdc/install
 	$(INSTALL_DIR) $(1)/usr/lib
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libcupsppdc.so* $(1)/usr/lib/
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib64/libcupsppdc.so* $(1)/usr/lib/
 endef
 
 define Build/InstallDev
@@ -303,7 +302,7 @@ define Build/InstallDev
 	$(INSTALL_DIR) $(1)/usr/include
 	$(CP) $(PKG_INSTALL_DIR)/usr/include/cups $(1)/usr/include/
 	$(INSTALL_DIR) $(1)/usr/lib
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libcups*.so* $(1)/usr/lib/
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib64/libcups*.so* $(1)/usr/lib/
 endef
 
 $(eval $(call BuildPackage,cups))

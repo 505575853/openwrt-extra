@@ -9,12 +9,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=epson-inkjet-printer-escpr
-PKG_VERSION:=1.6.9
+PKG_VERSION:=1.6.3
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-1lsb3.2.tar.gz
-PKG_SOURCE_URL:=https://download3.ebz.epson.net/dsc/f/03/00/05/12/61/b548695f9c41e714ea5efcd8cf9200de4cdadaff/
-PKG_SHA256SUM:=e76e019e5051bfdb6cde970346cab3518c192a8dd87d05f3f3af380ed4542970
+PKG_SOURCE_URL:=https://download3.ebz.epson.net/dsc/f/03/00/04/33/53/0177a44361d3dfeacf7f15ff4a347cef373688da/$(PKG_SOURCE_URL)
+PKG_MD5SUM:=8ea7004e19919141b6b04a2f20c16de3
 
 PKG_INSTALL:=1
 
@@ -32,6 +32,24 @@ define Package/epson-inkjet-printer-escpr/description
   Epson Inkjet ESC/P-R printer driver
 endef
 
+define Package/epson-inkjet-printer-escpr-ppds
+  SECTION:=print
+  CATEGORY:=Printing and Imaging
+  TITLE:=PPD files for Epson Inkjet ESC/P-R printer driver
+  MAINTAINER:=Weijie Gao <hackpascal@gmail.com>
+endef
+
+define Package/epson-inkjet-printer-escpr-ppds/description
+  PPD files for Epson Inkjet ESC/P-R printer driver
+endef
+
+define Package/epson-inkjet-printer-escpr-ppds/config
+config EPSON_INKJET_ESCPR_PPDS_COMPILE
+	bool "Compile ppd files"
+	depends on PACKAGE_epson-inkjet-printer-escpr-ppds
+	default n
+endef
+
 CONFIGURE_ARGS += \
 	--with-cupsfilterdir="/usr/lib/cups/filter" \
 	--with-cupsppddir="/usr/share/ppd"
@@ -47,4 +65,15 @@ define Package/epson-inkjet-printer-escpr/install
 	$(INSTALL_BIN) ./files/epson-escpr-set-cups-filters-permission $(1)/etc/uci-defaults/
 endef
 
+define Package/epson-inkjet-printer-escpr-ppds/install
+	if [ x$(CONFIG_EPSON_INKJET_ESCPR_PPDS_COMPILE) = xy ]; then \
+		$(INSTALL_DIR) $(1)/usr/lib/cups/driver; \
+		ppdbc $(PKG_INSTALL_DIR)/usr/share/ppd/epson-inkjet-printer-escpr $(1)/usr/lib/cups/driver/epson-inkjet-printer-escpr.ppdb; \
+	else \
+		$(INSTALL_DIR) $(1)/usr/share/ppd/epson-inkjet-printer-escpr; \
+		$(CP) -a $(PKG_INSTALL_DIR)/usr/share/ppd/epson-inkjet-printer-escpr/* $(1)/usr/share/ppd/epson-inkjet-printer-escpr; \
+	fi
+endef
+
 $(eval $(call BuildPackage,epson-inkjet-printer-escpr))
+$(eval $(call BuildPackage,epson-inkjet-printer-escpr-ppds))

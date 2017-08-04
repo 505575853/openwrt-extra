@@ -11,9 +11,9 @@ include $(TOPDIR)/rules.mk
 PKG_NAME:=foo2zjs
 PKG_VERSION:=2015-10-24
 
-PKG_SOURCE:=$(PKG_NAME).tar.gz
-PKG_SOURCE_URL:=http://foo2zjs.rkkda.com/
-#PKG_MD5SUM:=638e8d4ce44c41328a87a383bbd36525
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar
+PKG_SOURCE_URL:=https://www.openprinting.org/download/foomatic/$(PKG_NAME).tar.gz
+PKG_MD5SUM:=638e8d4ce44c41328a87a383bbd36525
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)
 

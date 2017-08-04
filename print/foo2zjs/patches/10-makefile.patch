@@ -204,12 +204,12 @@
  	    fi; \
  	done
  
--MODEL=$(PREFIX)/share/cups/model
+-MODEL=$(DESTDIR)/usr/share/cups/model
 -LOCALMODEL=$(DESTDIR)/usr/local/share/cups/model
 +MODEL=$(PREFIX)/usr/share/cups/model
 +LOCALMODEL=$(PREFIX)/usr/local/share/cups/model
  MACMODEL=/Library/Printers/PPDs/Contents/Resources
--PPD=$(PREFIX)/share/ppd
+-PPD=$(DESTDIR)/usr/share/ppd
 +PPD=$(PREFIX)/usr/share/ppd
  VARPPD=/var/lp/ppd
  install-ppd:

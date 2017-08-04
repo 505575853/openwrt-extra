@@ -13,8 +13,8 @@ PKG_DATE:=20150819
 PKG_VERSION:=4.0-$(PKG_DATE)
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=http://pkgs.fedoraproject.org/repo/pkgs/foomatic-db/foomatic-db-4.0-20150819.tar.gz/6adaea9b7383d97c3aefb58532fd66d8/
-PKG_MD5SUM:=6adaea9b7383d97c3aefb58532fd66d8
+PKG_SOURCE_URL:=https://www.openprinting.org/download/foomatic/$(PKG_SOURCE)
+PKG_MD5SUM:=b8049e61a3dad76044e83dde0087e0a0
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_DATE)
 
@@ -59,7 +59,7 @@ endef
 CONFIGURE_ARGS += \
 	--with-drivers=NOOBSOLETES,NOEMPTYCMDLINE
 
-define Build/Install
+define Build/Compile
 	# Move files
 	$(INSTALL_DIR) $(PKG_BUILD_DIR)/ppds-openprinting
 	$(CP) -a $(PKG_BUILD_DIR)/db/source/PPD/* $(PKG_BUILD_DIR)/ppds-openprinting
@@ -86,6 +86,10 @@ define Build/Install
 	if [ x$(CONFIG_OPENPRINTING_PPDS_COMPILE) = xy ]; then \
 		ppdbc $(PKG_BUILD_DIR)/ppds-openprinting $(PKG_BUILD_DIR)/openprinting-ppds.ppdb; \
 	fi
+endef
+
+define Build/Install
+	# empty
 endef
 
 define Package/foomatic-db-ppds/install
