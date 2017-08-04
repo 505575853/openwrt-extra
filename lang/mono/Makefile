@@ -13,7 +13,8 @@ PKG_VERSION=4.4.2
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(_PKG_VERSION).tar.bz2
-PKG_SOURCE_URL:=http://download.mono-project.com/sources/mono/
+#PKG_SOURCE_URL:=http://download.mono-project.com/sources/mono/
+PKG_SOURCE_URL:=http://download.openpkg.org/components/cache/mono/
 PKG_MD5SUM:=bf3248973a518cfd1c82ee8a3e4f64b5
 PKG_MAINTAINER:=maz-1 <ohmygod19993 at gmail dot com>
 PKG_LICENSE:=GPL
