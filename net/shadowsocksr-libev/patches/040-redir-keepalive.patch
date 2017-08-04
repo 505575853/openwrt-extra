@@ -35,15 +35,15 @@ Subject: [PATCH] Add keepalive feature for remote connections
      setnonblocking(remotefd);
 @@ -680,7 +683,7 @@ int main(int argc, char **argv)
  
-     opterr = 0;
+     USE_TTY();
  
--    while ((c = getopt_long(argc, argv, "f:s:p:l:k:t:m:c:b:a:n:O:o:G:g:huUvA", // SSR
-+    while ((c = getopt_long(argc, argv, "f:s:p:l:k:t:m:c:b:a:n:O:o:G:g:huUvAK",
+-    while ((c = getopt_long(argc, argv, "f:s:p:l:k:t:m:c:b:a:n:huUvA6"
++    while ((c = getopt_long(argc, argv, "f:s:p:l:k:t:m:c:b:a:n:huUvA6K"
+                             "O:o:G:g:",
                              long_options, &option_index)) != -1) {
          switch (c) {
-         case 0:
 @@ -747,6 +750,9 @@ int main(int argc, char **argv)
-             // The option character is not recognized.
+             LOGE("Unrecognized option: %s", optarg);
              opterr = 1;
              break;
 +        case 'K':
@@ -53,8 +53,8 @@ Subject: [PATCH] Add keepalive feature for remote connections
      }
  
 @@ -789,6 +795,9 @@ int main(int argc, char **argv)
-         if (auth == 0) {
-             auth = conf->auth;
+         if (mptcp == 0) {
+             mptcp = conf->mptcp;
          }
 +        if (keepalive == 0) {
 +            keepalive = conf->keepalive;
@@ -63,7 +63,7 @@ Subject: [PATCH] Add keepalive feature for remote connections
          if (nofile == 0) {
              nofile = conf->nofile;
 @@ -829,6 +838,10 @@ int main(int argc, char **argv)
-         LOGI("onetime authentication enabled");
+         LOGI("resolving hostname to IPv6 address first");
      }
  
 +    if (keepalive) {
@@ -76,9 +76,9 @@ Subject: [PATCH] Add keepalive feature for remote connections
 --- a/src/jconf.h
 +++ b/src/jconf.h
 @@ -51,6 +51,7 @@ typedef struct {
-     char *method;
+     };
      char *timeout;
-     int auth;
+     char *user;
 +    int keepalive;
      int fast_open;
      int nofile;
@@ -86,11 +86,11 @@ Subject: [PATCH] Add keepalive feature for remote connections
 --- a/src/jconf.c
 +++ b/src/jconf.c
 @@ -187,6 +187,8 @@ jconf_t *read_jconf(const char *file)
-                 conf.fast_open = value->u.boolean;
-             } else if (strcmp(name, "auth") == 0) {
-                 conf.auth = value->u.boolean;
-+            } else if (strcmp(name, "keepalive") == 0) {
-+                conf.keepalive = value->u.boolean;
-             } else if (strcmp(name, "nofile") == 0) {
-                 conf.nofile = value->u.integer;
-             } else if (strcmp(name, "nameserver") == 0) {
+                     check_json_value_type(value, json_boolean,
+                                           "invalid config file: option 'fast_open' must be a boolean");
+                     conf.fast_open = value->u.boolean;
++                } else if (strcmp(name, "keepalive") == 0) {
++                    conf.keepalive = value->u.boolean;
+                 } else if (strcmp(name, "nofile") == 0) {
+                     check_json_value_type(value, json_integer,
+                                           "invalid config file: option 'nofile' must be an integer");

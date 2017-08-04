@@ -1,15 +1,15 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=shadowsocksr-libev
-PKG_VERSION:=2.4.0
+PKG_VERSION:=2.5.6
 PKG_RELEASE=1
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_URL:=https://github.com/breakwa11/shadowsocks-libev.git
+PKG_SOURCE_URL:=https://github.com/shadowsocksr-backup/shadowsocksr-libev.git
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_VERSION:=f3a923ee38a1fed6b81336bb90b83e37412ee2bb
+PKG_SOURCE_VERSION:=e2373d7199102f383b741da148b989c7c1e8832e
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_MAINTAINER:=breakwa11
+PKG_MAINTAINER:=shadowsocksr-backup
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(BUILD_VARIANT)/$(PKG_NAME)-$(PKG_VERSION)
 
@@ -24,21 +24,21 @@ define Package/shadowsocksr-libev/Default
   SECTION:=net
   CATEGORY:=Network
   TITLE:=Lightweight Secured Socks5 Proxy
-  URL:=https://github.com/breakwa11/shadowsocks-libev
+  URL:=https://github.com/shadowsocksr-backup/shadowsocksr-libev
 endef
 
 define Package/shadowsocksr-libev
   $(call Package/shadowsocksr-libev/Default)
   TITLE+= (OpenSSL)
   VARIANT:=openssl
-  DEPENDS:=+libopenssl +zlib +ipset +!PACKAGE_ip-full:ip +iptables-mod-tproxy
+  DEPENDS:=+libopenssl +zlib +ipset +!PACKAGE_ip-full:ip +iptables-mod-tproxy +libpcre
 endef
 
 define Package/shadowsocksr-libev-polarssl
   $(call Package/shadowsocksr-libev/Default)
   TITLE+= (PolarSSL)
   VARIANT:=polarssl
-  DEPENDS:=+libpolarssl +zlib +ipset +!PACKAGE_ip-full:ip +iptables-mod-tproxy
+  DEPENDS:=+libpolarssl +zlib +ipset +!PACKAGE_ip-full:ip +iptables-mod-tproxy +libpcre
 endef
 
 define Package/shadowsocksr-libev-server
@@ -92,7 +92,7 @@ define Package/shadowsocksr-libev/install
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/ss-local $(1)/usr/bin/ssr-local
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/ss-redir $(1)/usr/bin/ssr-redir
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/ss-tunnel $(1)/usr/bin/ssr-tunnel
+	# $(INSTALL_BIN) $(PKG_BUILD_DIR)/src/ss-tunnel $(1)/usr/bin/ssr-tunnel
 	$(INSTALL_BIN) ./files/ssr-rules $(1)/usr/bin
 	$(INSTALL_DIR) $(1)/usr/share/shadowsocksr-libev
 	$(INSTALL_DATA) ./files/firewall.include $(1)/usr/share/shadowsocksr-libev/firewall.include
