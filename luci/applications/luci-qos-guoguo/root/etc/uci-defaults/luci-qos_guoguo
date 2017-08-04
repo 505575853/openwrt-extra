@@ -7,5 +7,7 @@ uci -q batch <<-EOF >/dev/null
 	commit ucitrack
 EOF
 
+/etc/init.d/qos_guoguo enabled && ( /etc/init.d/qos_guoguo stop ; /etc/init.d/qos_guoguo disable )
+
 rm -f /tmp/luci-indexcache
 exit 0
