@@ -1,20 +1,19 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=sysuh3c
-PKG_VERSION:=0.2
-PKG_RELEASE:=1
+PKG_VERSION:=0.3
+PKG_RELEASE:=2
 
 PKG_BUILD_DIR := $(BUILD_DIR)/$(PKG_NAME)
 
 include $(INCLUDE_DIR)/package.mk
 
 define Package/$(PKG_NAME)
-	SECTION:=net
-	CATEGORY:=Network
-	SUBMENU:=CERNET
+        SECTION:=utils
+        CATEGORY:=Utilities
         DEPENDS:=+libc +libgcc +libuci
         TITLE:=sysuh3c
-	URL:=https://github.com/zonyitoo/sysuh3c
+        PKGARCH:=ramips
         MAINTAINER:=zonyitoo
 endef
 
