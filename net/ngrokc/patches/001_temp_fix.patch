@@ -1,0 +1,24 @@
+diff -Naur a/Makefile.openssl b/Makefile.openssl
+--- a/Makefile.openssl	2017-08-04 02:00:27.131575504 +0000
++++ b/Makefile.openssl	2017-08-04 02:03:36.856363877 +0000
+@@ -2,7 +2,7 @@
+ CXX?=g++
+ CFLAGS+=-fexceptions -DOPENSSL=1 -O2
+ CXXFLAGS=-fexceptions -DOPENSSL=1 -O2
+-LIBS=sendmsg.o openssldl.o cJSON.o nonblocking.o sslbio.o ngrok.o main.o
++LIBS=sendmsg.o openssldl.o cJSON.o nonblocking.o opensslbio.o ngrok.o main.o
+ all:: ngrokc $(LIBS)
+ ngrokc: $(LIBS)
+ 	$(CXX) -s $(LIBS) -o ngrokc -lssl -lcrypto -ldl
+diff -Naur a/Makefile.polarssl b/Makefile.polarssl
+--- a/Makefile.polarssl	2017-08-04 02:03:00.496723841 +0000
++++ b/Makefile.polarssl	2017-08-04 02:03:52.269544618 +0000
+@@ -2,7 +2,7 @@
+ CXX?=g++
+ CFLAGS+=-fexceptions -DOPENSSL=0 -O2
+ CXXFLAGS=-fexceptions -DOPENSSL=0 -O2
+-LIBS=sendmsg.o cJSON.o nonblocking.o sslbio.o ngrok.o main.o
++LIBS=sendmsg.o cJSON.o nonblocking.o polarsslbio.o ngrok.o main.o
+ all:: ngrokc $(LIBS)
+ ngrokc: $(LIBS)
+ 	$(CXX) -s $(LIBS) -o ngrokc -lpthread -lpolarssl
