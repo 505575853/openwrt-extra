@@ -43,7 +43,7 @@ define Package/libcupsfilters
   SECTION:=libs
   CATEGORY:=Libraries
   TITLE:=OpenPrinting CUPS filters - Core library
-  DEPENDS:=+libcups +libcupsimage +libjpeg +libpng +libtiff +zlib
+  DEPENDS:=+libcups +libcupsimage +libjpeg +libpng +libtiff +zlib +libopenldap
   URL:=http://www.openprinting.org
 endef
 
@@ -53,7 +53,7 @@ define Package/libfontembed
   SECTION:=libs
   CATEGORY:=Libraries
   TITLE:=OpenPrinting CUPS filters - Font embed library
-  DEPENDS:=+libjpeg +libtiff
+  DEPENDS:=+libjpeg +libtiff +libopenldap
   URL:=http://www.openprinting.org
 endef
 
