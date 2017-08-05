@@ -190,7 +190,7 @@ define Package/hplip-ppds/install
 		$(INSTALL_BIN) $(PKG_BUILD_DIR)/hplip.ppdb $(1)/usr/lib/cups/driver/hplip; \
 	else \
 		$(INSTALL_DIR) $(1)/usr/share/ppd/HP; \
-		$(CP) -a $(PKG_INSTALL_DIR)/usr/share/ppd/HP/*.ppd $(1)/usr/share/ppd/HP; \
+		$(CP) -a $(PKG_BUILD_DIR)/tmp-ppds/HP/*.ppd $(1)/usr/share/ppd/HP; \
 	fi
 endef
 

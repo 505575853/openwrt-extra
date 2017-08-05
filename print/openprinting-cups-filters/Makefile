@@ -61,7 +61,7 @@ define Package/openprinting-cups-backends
   SECTION:=print
   CATEGORY:=Printing and Imaging
   TITLE:=OpenPrinting CUPS filters - Backends
-  DEPENDS:=+libcupsimage +libtiff
+  DEPENDS:=+libcupsimage +libtiff +libopenldap
   URL:=http://www.openprinting.org
 endef
 
