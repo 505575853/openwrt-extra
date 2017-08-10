@@ -151,8 +151,7 @@ $(eval $(call application,qos_gargoyle,LuCI Support for qos_gargoyle,\
 	+PACKAGE_luci-app-qos_gargoyle:qos-gargoyle \
 	+PACKAGE_luci-app-qos_gargoyle:gargoyle-firewall-util \
 	+PACKAGE_luci-app-qos_gargoyle:libiptbwctl \
-	+PACKAGE_luci-app-qos_gargoyle:libericstools \
-	+PACKAGE_luci-app-qos_gargoyle:luci))
+	+PACKAGE_luci-app-qos_gargoyle:libericstools))
 
 
 
