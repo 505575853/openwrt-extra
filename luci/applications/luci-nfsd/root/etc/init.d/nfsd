@@ -76,7 +76,7 @@ nfsenable=$(uci get nfsd.@nfsd[0].enable)
   mkdir -p $NFS_D
   echo "" > $NFS_EXPORT
   
-  [[ $(readlink -f "/etc/exports") != $NFS_EXPORT ]] && \
+  [[ z$(readlink -f "/etc/exports") != z$NFS_EXPORT ]] && \
     ( rm -rf /etc/exports ; ln -s $NFS_EXPORT /etc/exports )
   
 	config_load nfsd
