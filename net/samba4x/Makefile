@@ -7,7 +7,7 @@
 
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=samba44
+PKG_NAME:=samba4x
 PKG_VERSION:=4.4.2
 PKG_RELEASE:=1
 
@@ -33,7 +33,7 @@ include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/kernel.mk
 
 
-define Package/samba44-server
+define Package/samba4x-server
   SECTION:=net
   CATEGORY:=Network
   TITLE:=Samba $(PKG_VERSION) SMB/CIFS server
@@ -42,7 +42,7 @@ define Package/samba44-server
 #DEPENDS+= +libreadline +libuuid +libtirpc libtirpc
 endef
 
-define Package/samba44-server/description
+define Package/samba4x-server/description
  The Samba software suite is a collection of programs that implements the
  SMB protocol for UNIX systems, allowing you to serve files and printers to
  Windows, NT, OS/2 and DOS clients. This protocol is sometimes also referred
@@ -250,7 +250,7 @@ define Build/Install
 endef
 
 # XXX: Make sure the name of multicall binary matches name in 111-multicall-wscript-build.patch
-define Package/samba44-server/install
+define Package/samba4x-server/install
 	$(INSTALL_DIR) $(1)/etc/config
 	$(INSTALL_DATA) ./files/$(PKG_NAME).config $(1)/etc/config/samba4
 	$(INSTALL_DIR) $(1)/etc/samba
@@ -273,7 +273,7 @@ define Package/samba44-server/install
 	$(LN) ../sbin/$(PKG_NAME)_multicall $(1)/usr/bin/testparm
 endef
 
-define Package/samba44-server/conffiles
+define Package/samba4x-server/conffiles
 /etc/config/samba4
 /etc/samba/smb.conf.template
 /etc/samba/smbpasswd

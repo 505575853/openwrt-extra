@@ -105,7 +105,7 @@ define Package/luci-app-samba4/conffiles
 endef
 
 $(eval $(call application,samba4,LuCI Support for Samba4,\
-	+PACKAGE_luci-app-samba4:samba44-server))
+	+PACKAGE_luci-app-samba4:samba4x-server))
 
 
 #define Package/luci-app-aria2/conffiles
