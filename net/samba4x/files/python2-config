@@ -18,7 +18,7 @@ case "$1" in
     echo -I$BASEDIR/include/python2.7 -I$BASEDIR/include/python2.7
 ;;
 --ldflags)
-    -lpython2.7 -lpthread -ldl -lutil -lm -Xlinker -export-dynamic
+    echo -lpython2.7 -lpthread -ldl -lutil -lm -Xlinker -export-dynamic
 ;;
 *)
     echo 'Usage: python2-config [--prefix|--exec-prefix|--includes|--libs|--cflags|--ldflags|--help]'

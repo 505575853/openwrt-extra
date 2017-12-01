@@ -38,7 +38,7 @@ define Package/samba4x-server
   CATEGORY:=Network
   TITLE:=Samba $(PKG_VERSION) SMB/CIFS server
   URL:=http://www.samba.org/
-  DEPENDS:=+zlib +libpthread +libpopt
+  DEPENDS:=+zlib +libpthread +libpopt +libcap
 #DEPENDS+= +libreadline +libuuid +libtirpc libtirpc
 endef
 
