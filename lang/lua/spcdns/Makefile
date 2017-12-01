@@ -8,12 +8,17 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=spcdns
-PKG_VERSION:=
+PKG_VERSION:=1.0.12
 PKG_RELEASE:=1
+PKG_REV:=da59956fdad7dc5d66f1229e789eaf228282d29e
 
-PKG_SOURCE:=$(PKG_NAME).tar.gz
-PKG_SOURCE_URL:=http://www.conman.org/software/spcdns/download
-#PKG_MD5SUM:=
+PKG_SOURCE_PROTO:=git
+PKG_SOURCE_VERSION:=$(PKG_REV)
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
+PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
+PKG_SOURCE_URL:=https://github.com/spc476/SPCDNS.git
+
+PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)/$(PKG_NAME)-$(PKG_VERSION)
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -46,7 +51,7 @@ define Package/luaspcdns/install
 	$(INSTALL_DIR) $(1)/usr/lib/lua
 	$(INSTALL_DIR) $(1)/usr/lib/lua/org
 	$(INSTALL_DIR) $(1)/usr/lib/lua/org/conman
-	$(INSTALL_DATA) $(PKG_BUILD_DIR)/built/dns.so $(1)/usr/lib/lua/org/conman
+	$(INSTALL_DATA) $(PKG_BUILD_DIR)/src/dns.so $(1)/usr/lib/lua/org/conman
 endef
 
 $(eval $(call BuildPackage,luaspcdns))
