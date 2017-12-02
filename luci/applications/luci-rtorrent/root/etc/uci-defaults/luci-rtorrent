@@ -14,7 +14,6 @@ do
     grep -e ":$gid:" ${IPKG_INSTROOT}/etc/passwd || ( \
 	echo "rtorrent:x:$gid:rtorrent" >> ${IPKG_INSTROOT}/etc/group ; \
 	echo "rtorrent:x:$gid:$gid:rtorrent:/var/run/rtorrent:/bin/false" >> ${IPKG_INSTROOT}/etc/passwd )
-    sleep 1
 done
 
 rm -f /tmp/luci-indexcache
